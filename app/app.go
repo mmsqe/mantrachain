@@ -124,6 +124,8 @@ import (
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	evmosencoding "github.com/cosmos/evm/encoding"
+
+	// "github.com/cosmos/evm/evmd"
 	srvflags "github.com/cosmos/evm/server/flags"
 	cosmosevmtypes "github.com/cosmos/evm/types"
 	cosmosevmutils "github.com/cosmos/evm/utils"
@@ -762,7 +764,7 @@ func New(
 	// app.IBCKeeper.SetRouterV2(ibcRouterV2)
 
 	// TODO: Configure EVM precompiles when needed
-	// corePrecompiles := NewAvailableStaticPrecompiles(
+	// corePrecompiles := evmd.NewAvailableStaticPrecompiles(
 	// 	app.StakingKeeper,
 	// 	app.DistrKeeper,
 	// 	app.PreciseBankKeeper,
