@@ -37,6 +37,9 @@ import (
 	"github.com/CosmWasm/wasmd/x/wasm"
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
+	"github.com/cosmos/cosmos-sdk/types/mempool"
+	"github.com/cosmos/evm/evmd"
+	ethcommon "github.com/ethereum/go-ethereum/common"
 
 	// Force-load the tracer engines to trigger registration due to Go-Ethereum v1.10.15 changes
 	"github.com/MANTRA-Chain/mantrachain/v5/app/ante"
@@ -126,6 +129,7 @@ import (
 	evmosencoding "github.com/cosmos/evm/encoding"
 
 	// "github.com/cosmos/evm/evmd"
+	chainante "github.com/cosmos/evm/evmd/ante"
 	srvflags "github.com/cosmos/evm/server/flags"
 	cosmosevmtypes "github.com/cosmos/evm/types"
 	cosmosevmutils "github.com/cosmos/evm/utils"
@@ -249,6 +253,8 @@ type App struct {
 	txConfig          client.TxConfig
 	interfaceRegistry types.InterfaceRegistry
 
+	pendingTxListeners []chainante.PendingTxListener
+
 	// keys to access the substores
 	keys    map[string]*storetypes.KVStoreKey
 	tkeys   map[string]*storetypes.TransientStoreKey
@@ -333,6 +339,28 @@ func New(
 	appCodec := encodingConfig.Codec
 	legacyAmino := encodingConfig.Amino
 	interfaceRegistry := encodingConfig.InterfaceRegistry
+	var prepareProposalHandler sdk.PrepareProposalHandler
+	var processProposalHandler sdk.ProcessProposalHandler
+	baseAppOptions = append(baseAppOptions, func(app *baseapp.BaseApp) {
+		var mpool mempool.Mempool
+		if maxTxs := cast.ToInt(appOpts.Get(server.FlagMempoolMaxTxs)); maxTxs >= 0 {
+			// Setup Mempool and Proposal Handlers
+			mpool = mempool.NewPriorityMempool(mempool.PriorityNonceMempoolConfig[int64]{
+				TxPriority:      mempool.NewDefaultTxPriority(),
+				SignerExtractor: evmd.NewEthSignerExtractionAdapter(mempool.NewDefaultSignerExtractionAdapter()),
+				MaxTx:           maxTxs,
+			})
+		} else {
+			mpool = mempool.NoOpMempool{}
+		}
+		app.SetMempool(mpool)
+		handler := baseapp.NewDefaultProposalHandler(mpool, app)
+
+		prepareProposalHandler = handler.PrepareProposalHandler()
+		processProposalHandler = handler.ProcessProposalHandler()
+		app.SetPrepareProposal(prepareProposalHandler)
+		app.SetProcessProposal(processProposalHandler)
+	})
 
 	bApp := baseapp.NewBaseApp(appName, logger, db, encodingConfig.TxConfig.TxDecoder(), baseAppOptions...)
 	bApp.SetCommitMultiStoreTracer(traceStore)
@@ -1108,7 +1136,7 @@ func New(
 
 	app.MarketMapKeeper.SetHooks(app.OracleKeeper.Hooks())
 
-	app.initializeABCIExtensions(client, metrics)
+	app.initializeABCIExtensions(client, metrics, prepareProposalHandler, processProposalHandler)
 
 	// Register any on-chain upgrades.
 	app.setupUpgradeStoreLoaders()
@@ -1165,6 +1193,17 @@ func (app *App) setAnteHandler(txConfig client.TxConfig, wasmConfig wasmtypes.No
 
 	// Set the AnteHandler for the app
 	app.SetAnteHandler(ante.NewAnteHandler(handlerOpts))
+}
+
+// RegisterPendingTxListener is used by json-rpc server to listen to pending transactions callback.
+func (app *App) RegisterPendingTxListener(listener func(ethcommon.Hash)) {
+	app.pendingTxListeners = append(app.pendingTxListeners, listener)
+}
+
+func (app *App) onPendingTx(hash ethcommon.Hash) {
+	for _, listener := range app.pendingTxListeners {
+		listener(hash)
+	}
 }
 
 // TODO: Implement post handler
