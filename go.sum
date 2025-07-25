@@ -1548,10 +1548,10 @@ github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyua
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
 github.com/mitchellh/pointerstructure v1.2.0 h1:O+i9nHnXS3l/9Wu7r4NrEdwA2VFTicjUEN1uBnDo34A=
 github.com/mitchellh/pointerstructure v1.2.0/go.mod h1:BRAsLI5zgXmw97Lf6s25bs8ohIXc3tViBH44KcwB2g4=
-github.com/mmsqe/evm v0.0.0-20250724010049-06f4e464428c h1:FrqJ+tW61AlX8iw2zLd6xydX64qJPyqNA8BCBvFraI0=
-github.com/mmsqe/evm v0.0.0-20250724010049-06f4e464428c/go.mod h1:B3o6PXp816HCvNTnU+86pnbtprH7MUEensaXhIpXgZo=
-github.com/mmsqe/evm/evmd v0.0.0-20250724010049-06f4e464428c h1:6wwQdGxAQGYqppSt4FBYfVVIKM0sOKQSSgOOYOLxHO0=
-github.com/mmsqe/evm/evmd v0.0.0-20250724010049-06f4e464428c/go.mod h1:i1QOkX+m/28z8/rMoA01xT+YzE2u9IJYY6TTV/u4yq4=
+github.com/mmsqe/evm v0.0.0-20250725034531-b2dace312ef8 h1:ro4+DKD3GpuBjKF+wyGt2hQ/FBdHPriD9WDzYXPg6TQ=
+github.com/mmsqe/evm v0.0.0-20250725034531-b2dace312ef8/go.mod h1:B3o6PXp816HCvNTnU+86pnbtprH7MUEensaXhIpXgZo=
+github.com/mmsqe/evm/evmd v0.0.0-20250725034531-b2dace312ef8 h1:oHJFj0508AiAT7Zr6/x2zDaFE2LNUUGyhR/WZz3D5fI=
+github.com/mmsqe/evm/evmd v0.0.0-20250725034531-b2dace312ef8/go.mod h1:i1QOkX+m/28z8/rMoA01xT+YzE2u9IJYY6TTV/u4yq4=
 github.com/moby/docker-image-spec v1.3.1 h1:jMKff3w6PgbfSa69GfNg+zN/XLhfXJGnEx3Nl2EsFP0=
 github.com/moby/docker-image-spec v1.3.1/go.mod h1:eKmb5VW8vQEh/BAr2yvVNvuiJuY6UIocYsFu/DxxRpo=
 github.com/moby/locker v1.0.1 h1:fOXqR41zeveg4fFODix+1Ch4mj/gT0NE1XJbp/epuBg=
