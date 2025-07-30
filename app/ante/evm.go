@@ -1,22 +1,24 @@
 package ante
 
 import (
+	sanctionkeeper "github.com/MANTRA-Chain/mantrachain/v5/x/sanction/keeper"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	evmante "github.com/cosmos/evm/ante/evm"
 	chainante "github.com/cosmos/evm/evmd/ante"
 )
 
-func newMonoEVMAnteHandler(options EVMHandlerOptions) sdk.AnteHandler {
+func newEVMAnteHandler(options HandlerOptions) sdk.AnteHandler {
 	decorators := []sdk.AnteDecorator{
+		sanctionkeeper.NewEVMBlacklistCheckDecorator(*options.SanctionKeeper),
 		evmante.NewEVMMonoDecorator(
-			options.AccountKeeper,
-			options.FeeMarketKeeper,
-			options.EvmKeeper,
-			options.MaxTxGasWanted,
+			options.EvmOptions.AccountKeeper,
+			options.EvmOptions.FeeMarketKeeper,
+			options.EvmOptions.EvmKeeper,
+			options.EvmOptions.MaxTxGasWanted,
 		),
 	}
-	if options.PendingTxListener != nil {
-		decorators = append(decorators, chainante.NewTxListenerDecorator(options.PendingTxListener))
+	if options.EvmOptions.PendingTxListener != nil {
+		decorators = append(decorators, chainante.NewTxListenerDecorator(options.EvmOptions.PendingTxListener))
 	}
 	return sdk.ChainAnteDecorators(decorators...)
 }
