@@ -133,7 +133,7 @@ import (
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
 	reflectionv1 "cosmossdk.io/api/cosmos/reflection/v1"
 	"cosmossdk.io/client/v2/autocli"
-	chainante "github.com/cosmos/evm/evmd/ante"
+	evmante "github.com/cosmos/evm/ante"
 	srvflags "github.com/cosmos/evm/server/flags"
 	cosmosevmtypes "github.com/cosmos/evm/types"
 	cosmosevmutils "github.com/cosmos/evm/utils"
@@ -257,7 +257,7 @@ type App struct {
 	interfaceRegistry types.InterfaceRegistry
 	clientCtx         client.Context
 
-	pendingTxListeners []chainante.PendingTxListener
+	pendingTxListeners []evmante.PendingTxListener
 
 	// keys to access the substores
 	keys    map[string]*storetypes.KVStoreKey
@@ -1147,16 +1147,16 @@ func New(
 		app.EVMMempool = evmMempool
 
 		// Set the global mempool for RPC access
-		if err := evmmempool.SetGlobalEVMMempool(evmMempool); err != nil {
-			panic(err)
-		}
+		evmmempool.SetGlobalEVMMempool(evmMempool)
 		app.SetMempool(evmMempool)
 		checkTxHandler := evmmempool.NewCheckTxHandler(evmMempool)
 		app.SetCheckTxHandler(checkTxHandler)
 
 		abciProposalHandler := baseapp.NewDefaultProposalHandler(evmMempool, app)
 		abciProposalHandler.SetSignerExtractionAdapter(evmmempool.NewEthSignerExtractionAdapter(sdkmempool.NewDefaultSignerExtractionAdapter()))
-		app.SetPrepareProposal(abciProposalHandler.PrepareProposalHandler())
+		prepareProposalHandler = abciProposalHandler.PrepareProposalHandler()
+		processProposalHandler = abciProposalHandler.ProcessProposalHandler()
+		app.SetPrepareProposal(prepareProposalHandler)
 	}
 
 	// oracle initialization
