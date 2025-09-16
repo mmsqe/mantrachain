@@ -13,7 +13,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 	vestingtypes "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 	cosmosante "github.com/cosmos/evm/ante/cosmos"
-	evmante "github.com/cosmos/evm/ante/evm"
 	evmtypes "github.com/cosmos/evm/x/vm/types"
 	ibcante "github.com/cosmos/ibc-go/v10/modules/core/ante"
 	"github.com/cosmos/ibc-go/v10/modules/core/keeper"
@@ -90,7 +89,6 @@ func newCosmosAnteHandler(options HandlerOptions) sdk.AnteHandler {
 		NewMultiChainIDDecorator(ante.NewSigVerificationDecorator(options.EvmOptions.AccountKeeper, options.EvmOptions.SignModeHandler)),
 		ante.NewIncrementSequenceDecorator(options.EvmOptions.AccountKeeper),
 		ibcante.NewRedundantRelayDecorator(options.IBCKeeper),
-		evmante.NewGasWantedDecorator(options.EvmOptions.EvmKeeper, options.EvmOptions.FeeMarketKeeper),
 	}
 
 	return sdk.ChainAnteDecorators(anteDecorators...)
