@@ -41,8 +41,8 @@ replace (
 	cosmossdk.io/store => github.com/mmsqe/cosmos-sdk/store v0.0.0-20250911010452-f028aa05574d
 	github.com/CosmWasm/wasmd => github.com/mmsqe/wasmd v0.0.0-20250905061337-8a72de31afe6
 	github.com/cosmos/cosmos-sdk => github.com/mmsqe/cosmos-sdk v0.46.0-beta2.0.20250911010452-f028aa05574d
-	github.com/cosmos/evm => github.com/mmsqe/evm v0.0.0-20250916074651-9b975aba52d5
-	github.com/cosmos/evm/evmd => github.com/mmsqe/evm/evmd v0.0.0-20250916074651-9b975aba52d5
+	github.com/cosmos/evm => github.com/mmsqe/evm v0.0.0-20250920133600-56398b348a06
+	github.com/cosmos/evm/evmd => github.com/mmsqe/evm/evmd v0.0.0-20250920133600-56398b348a06
 	github.com/cosmos/ibc-go/v10 => github.com/mmsqe/ibc-go/v10 v10.0.0-20250904020418-f7f56cf83a9d
 	github.com/tidwall/btree => github.com/crypto-org-chain/btree v0.0.0-20240406140148-2687063b042c
 )

@@ -1544,10 +1544,10 @@ github.com/mmsqe/cosmos-sdk v0.46.0-beta2.0.20250911010452-f028aa05574d h1:8ZDWO
 github.com/mmsqe/cosmos-sdk v0.46.0-beta2.0.20250911010452-f028aa05574d/go.mod h1:SjzLbXDNHCLLo3VPv+23KsMh0IOWx2Uoa9v/3kepdyg=
 github.com/mmsqe/cosmos-sdk/store v0.0.0-20250911010452-f028aa05574d h1:RjIzJFS+J7X5UAgefCs8PakG3W+pNgLARF29bYnQemY=
 github.com/mmsqe/cosmos-sdk/store v0.0.0-20250911010452-f028aa05574d/go.mod h1:QY+PHicBEv5N3Pj8Mu9Q17We0w3uIfjhtGDMIwdhofw=
-github.com/mmsqe/evm v0.0.0-20250916074651-9b975aba52d5 h1:fKI6nJ/lw0Gv1QaQDXpDcx4z+GEkwLXnrr9SoXFtnLU=
-github.com/mmsqe/evm v0.0.0-20250916074651-9b975aba52d5/go.mod h1:U0ItlMArLH8cqIXoGuFZFZG4oB3RP+Z+p6SrjWuRG4U=
-github.com/mmsqe/evm/evmd v0.0.0-20250916074651-9b975aba52d5 h1:G6zwpdhrFBtTzaIV7M/Q0R4MPvKIfITDVZgAW07lyKM=
-github.com/mmsqe/evm/evmd v0.0.0-20250916074651-9b975aba52d5/go.mod h1:sUZs3o2QWZT44FYbJGaSQrYA3qgot+UpukvpWFtaH5k=
+github.com/mmsqe/evm v0.0.0-20250920133600-56398b348a06 h1:yWoNjUErqCH8b6PQcBFO2+CduJih1maiJhXibUsWN4A=
+github.com/mmsqe/evm v0.0.0-20250920133600-56398b348a06/go.mod h1:U0ItlMArLH8cqIXoGuFZFZG4oB3RP+Z+p6SrjWuRG4U=
+github.com/mmsqe/evm/evmd v0.0.0-20250920133600-56398b348a06 h1:f91KBttoV1bVvFjXnoanrwW5/OkE7E32T2aKgUL6UUY=
+github.com/mmsqe/evm/evmd v0.0.0-20250920133600-56398b348a06/go.mod h1:sUZs3o2QWZT44FYbJGaSQrYA3qgot+UpukvpWFtaH5k=
 github.com/mmsqe/ibc-go/v10 v10.0.0-20250904020418-f7f56cf83a9d h1:LW9+f1cQ6fxmxAaQTREFb3RncUmA9Bsw3yhcuUsoiWM=
 github.com/mmsqe/ibc-go/v10 v10.0.0-20250904020418-f7f56cf83a9d/go.mod h1:9V73kfRcIKzA+X1pbrDq+MgZg8fTG5ijDwmonTEg/5E=
 github.com/mmsqe/wasmd v0.0.0-20250905061337-8a72de31afe6 h1:vBCqx1wbe0cKXByMJ7ocPhyKtG3LCGQ7VLM11OQU9Dw=
