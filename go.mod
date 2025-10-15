@@ -18,8 +18,8 @@ replace (
 	github.com/cosmos/cosmos-sdk => github.com/MANTRA-Chain/cosmos-sdk v0.53.3-v5-mantra-1.0.20251009083342-3fb27559d5ba
 
 	// Direct tag link: https://github.com/MANTRA-Chain/evm/tree/mantra/v0.4.x_main
-	github.com/cosmos/evm => github.com/MANTRA-Chain/evm v0.0.0-20251010000919-948e96c650c7
-	github.com/cosmos/evm/evmd => github.com/MANTRA-Chain/evm/evmd v0.0.0-20251010000919-948e96c650c7
+	github.com/cosmos/evm => github.com/mmsqe/evm v0.0.0-20251014013630-c7b33bb605d2
+	github.com/cosmos/evm/evmd => github.com/mmsqe/evm/evmd v0.0.0-20251014013630-c7b33bb605d2
 
 	// ledger_zemu
 	github.com/cosmos/ledger-cosmos-go => github.com/mmsqe/ledger-cosmos-go v0.0.0-20251010033953-465898c7cafa
