@@ -16,9 +16,21 @@ help:
 	@echo "  make test                  Show available test commands"
 	@echo "  make proto                 Show available proto commands"
 	@echo ""
+	@echo "Build options:"
+	@echo "  LEDGER_ENABLED=true        Enable ledger support (default: true)"
+	@echo "  LEDGER_ZEMU=true           Build with Zemu simulator support (default: false)"
+	@echo "                             When true: builds with 'ledger ledger_zemu' tags"
+	@echo "                             When false: builds with 'ledger' tag only"
+	@echo ""
+	@echo "Examples:"
+	@echo "  make build                          # Build with real ledger support"
+	@echo "  make build LEDGER_ZEMU=true         # Build with Zemu simulator support"
+	@echo "  make build LEDGER_ENABLED=false     # Build without any ledger support"
+	@echo ""
 	@echo "Run 'make [subcommand]' to see the available commands for each subcommand."
 
 LEDGER_ENABLED ?= true
+LEDGER_ZEMU ?= false
 BINDIR ?= $(GOPATH)/bin
 BUILDDIR ?= $(CURDIR)/build
 DOCKER := $(shell which docker)
@@ -52,7 +64,11 @@ ifeq ($(LEDGER_ENABLED),true)
     ifeq ($(GCCEXE),)
       $(error gcc.exe not installed for ledger support, please install or set LEDGER_ENABLED=false)
     else
-      build_tags += ledger pebbledb
+      ifeq ($(LEDGER_ZEMU),true)
+        build_tags += ledger ledger_zemu pebbledb
+      else
+        build_tags += ledger pebbledb
+      endif
     endif
   else
     UNAME_S = $(shell uname -s)
@@ -63,7 +79,11 @@ ifeq ($(LEDGER_ENABLED),true)
       ifeq ($(GCC),)
         $(error gcc not installed for ledger support, please install or set LEDGER_ENABLED=false)
       else
-        build_tags += ledger pebbledb
+        ifeq ($(LEDGER_ZEMU),true)
+          build_tags += ledger ledger_zemu pebbledb
+        else
+          build_tags += ledger pebbledb
+        endif
       endif
     endif
   endif
