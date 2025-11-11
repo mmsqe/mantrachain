@@ -697,7 +697,7 @@ func New(
 		&app.Erc20Keeper,
 		evmChainID,
 		tracer,
-	).WithDefaultEvmCoinInfo(EVMCoinInfo)
+	)
 
 	// ERC20 Keeper
 	app.Erc20Keeper = erc20keeper.NewKeeper(
