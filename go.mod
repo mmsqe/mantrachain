@@ -13,10 +13,10 @@ replace (
 	// Direct cosmos-sdk branch link: https://github.com/MANTRA-Chain/cosmos-sdk/tree/mantra/v0.53.4, current branch: mantra/v0.53.4
 	// Direct commit link: https://github.com/MANTRA-Chain/cosmos-sdk/tree/fcbc2e72a1beb76b35a673d8344ffea13c8d9b9a
 	// Direct tag link: https://github.com/MANTRA-Chain/cosmos-sdk/tree/v0.53.4-mantra-1
-	github.com/cosmos/cosmos-sdk => github.com/mmsqe/cosmos-sdk v0.46.0-beta2.0.20251118061825-37802caac597
+	github.com/cosmos/cosmos-sdk => github.com/mmsqe/cosmos-sdk v0.46.0-beta2.0.20251118161919-98f3619cb25b
 
 	// release/v0.5.x
-	github.com/cosmos/evm => github.com/mmsqe/evm v0.0.0-20251118062403-df6cb1e34078
+	github.com/cosmos/evm => github.com/mmsqe/evm v0.0.0-20251118161928-a6b8db9ad32b
 
 	// branch: release/1.16
 	github.com/ethereum/go-ethereum => github.com/cosmos/go-ethereum v1.16.2-cosmos-1
