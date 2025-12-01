@@ -1,14 +1,14 @@
-package v6providerrc0
+package v7providerrc0
 
 import (
 	"cosmossdk.io/store/types"
-	"github.com/MANTRA-Chain/mantrachain/v6/app/upgrades"
+	"github.com/MANTRA-Chain/mantrachain/v7/app/upgrades"
 	providertypes "github.com/cosmos/interchain-security/v7/x/ccv/provider/types"
 )
 
 const (
 	// UpgradeName defines the on-chain upgrade name.
-	UpgradeName = "v6.0.0-provider-rc0"
+	UpgradeName = "v7.0.0-provider-rc0"
 )
 
 var Upgrade = upgrades.Upgrade{
@@ -16,6 +16,6 @@ var Upgrade = upgrades.Upgrade{
 	CreateUpgradeHandler: CreateUpgradeHandler,
 	StoreUpgrades: types.StoreUpgrades{
 		Added:   []string{providertypes.ModuleName},
-		Deleted: []string{"group"},
+		Deleted: []string{},
 	},
 }
